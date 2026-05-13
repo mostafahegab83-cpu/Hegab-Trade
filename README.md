@@ -1,2 +1,0 @@
-# Hegab-Trade
-Inventory Manger 
