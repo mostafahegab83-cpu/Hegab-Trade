@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hegab Trade</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f4f4f4;
+      color: #222;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .status {
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      background: #fff3cd;
+      color: #856404;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .status.connected {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    input {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      border: none;
+      border-radius: 5px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    button.delete {
+      background: #dc2626;
+    }
+
+    button.delete:hover {
+      background: #b91c1c;
+    }
+
+    button.edit {
+      background: #16a34a;
+    }
+
+    button.edit:hover {
+      background: #15803d;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .summary-card {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .summary-card strong {
+      display: block;
+      font-size: 24px;
+      margin-top: 5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background: #111827;
+      color: white;
+    }
+
+    tr:hover {
+      background: #f9fafb;
+    }
+
+    .actions {
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+    }
+
+    @media (max-width: 800px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        font-size: 13px;
+      }
+
+      th, td {
+        padding: 7px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Hegab Trade</h1>
+
+    <div id="connectionStatus" class="status">
+      Connecting to Firebase...
+    </div>
+
+    <div class="form-grid">
+      <input id="itemName" type="text" placeholder="Item name" />
+      <input id="quantity" type="number" placeholder="Quantity" />
+      <input id="price" type="number" placeholder="Price" />
+      <input id="notes" type="text" placeholder="Notes" />
+      <button onclick="addRecord()">Add Item</button>
+    </div>
+
+    <div class="summary">
+      <div class="summary-card">
+        Total Items
+        <strong id="totalItems">0</strong>
+      </div>
+
+      <div class="summary-card">
+        Total Quantity
+        <strong id="totalQuantity">0</strong>
+      </div>
+
+      <div class="summary-card">
+        Total Value
+        <strong id="totalValue">0</strong>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th>Notes</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody id="recordsTable">
+        <tr>
+          <td colspan="7">Loading data...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
